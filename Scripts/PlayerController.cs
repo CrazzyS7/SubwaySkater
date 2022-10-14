@@ -15,13 +15,15 @@ public class PlayerController : MonoBehaviour
         mPlayerRB.velocity = new Vector3(mPlayerRB.velocity.x, mBounceForce, mPlayerRB.velocity.z);
         string materialName = _other.transform.GetComponent<MeshRenderer>().material.name;
 
-        if(materialName == "Unsafe (Instance)")
+        if(materialName == "UnsafeColor (Instance)")
         {
             GameMAnager.IsGameOver = true;
+            Debug.Log("Game Over");
         }
-        else if(materialName == "LastRing (Instance)")
+        else if(materialName == "FinalColor (Instance)")
         {
             GameMAnager.LevelCompleted = true;
+            Debug.Log("Completed level");
         }
         return;
     }
