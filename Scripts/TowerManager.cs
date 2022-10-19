@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 
 public class TowerManager : MonoBehaviour
@@ -10,6 +11,9 @@ public class TowerManager : MonoBehaviour
 
     private readonly float mDistance = 5.0f;
     private readonly int mNumOFRings = 7;
+    private readonly int mMaxUnsafe = 6;
+    private readonly int mMinHoles = 2;
+    private readonly int mMaxHoles = 4;
     private float mYSpawn = 0;
     private int mUnsafe = 0;
     private int mHoles = 0;
@@ -35,8 +39,8 @@ public class TowerManager : MonoBehaviour
 
     public void SpawnRing()
     {
-        mHoles = Random.Range(2, 4);
-        mUnsafe = 6 - mHoles;
+        mHoles = Random.Range(mMinHoles, mMaxHoles);
+        mUnsafe = mMaxUnsafe - mHoles;
         mYSpawn -= mDistance;
         GenerateRing(mUnsafe, mHoles);
         GameObject ring = Instantiate(mRing, transform.up * mYSpawn, Quaternion.identity);
@@ -54,10 +58,10 @@ public class TowerManager : MonoBehaviour
 
     public void GenerateRing(int _unsafe, int _holes)
     {
-        foreach(GameObject wing in mWings)
+        foreach(GameObject _wing in mWings)
         {
-            wing.transform.GetComponent<MeshRenderer>().material = mSafeColor;
-            wing.SetActive(true);
+            _wing.transform.GetComponent<MeshRenderer>().material = mSafeColor;
+            _wing.SetActive(true);
         }
 
         for (int i = 0; i < _unsafe; i++)

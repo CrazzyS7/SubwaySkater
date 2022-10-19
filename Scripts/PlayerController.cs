@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody mPlayerRB;
-    private float mBounceForce = 6.0f;
+    private readonly float mBounceForce = 6.0f;
 
     private void Start()
     {
@@ -17,13 +17,13 @@ public class PlayerController : MonoBehaviour
 
         if(materialName == "UnsafeColor (Instance)")
         {
-            GameMAnager.IsGameOver = true;
-            Debug.Log("Game Over");
+            Cursor.lockState = CursorLockMode.None;
+            GameManager.IsGameOver = true;
         }
         else if(materialName == "FinalColor (Instance)")
         {
-            GameMAnager.LevelCompleted = true;
-            Debug.Log("Completed level");
+            Cursor.lockState = CursorLockMode.None;
+            GameManager.LevelCompleted = true;
         }
         return;
     }
