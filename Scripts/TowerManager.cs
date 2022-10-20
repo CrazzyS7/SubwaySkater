@@ -10,30 +10,28 @@ public class TowerManager : MonoBehaviour
     public GameObject mRing;
 
     private readonly float mDistance = 5.0f;
-    private readonly int mNumOFRings = 7;
     private readonly int mMaxUnsafe = 6;
     private readonly int mMinHoles = 2;
     private readonly int mMaxHoles = 4;
+    //private int mNumOfRings = 7;
     private float mYSpawn = 0;
     private int mUnsafe = 0;
     private int mHoles = 0;
 
+    public static int NumberOfRings
+    { get; private set; }
+
     // Start is called before the first frame update
     void Start()
     {
+        NumberOfRings = GameManager.CurrentLevelNum + 5;
         SpawnInitFinal(0);
-        for (int i = 0; i < mNumOFRings; i++)
-        {
+
+        for (int i = 0; i < NumberOfRings; i++)
             SpawnRing();
-        }
+
         mYSpawn -= mDistance;
         SpawnInitFinal(mSanRings.Length - 1);
-        return;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
         return;
     }
 

@@ -4,25 +4,14 @@ using TMPro;
 
 public class MainMenu : MonoBehaviour
 {
-    public TextMeshProUGUI mFirstScoreText;
     public TextMeshProUGUI mSecondScoreText;
     public TextMeshProUGUI mThirdScoreText;
+    public TextMeshProUGUI mFirstScoreText;
+    public TextMeshProUGUI mSoundMuteText;
 
     private readonly int mFirstScore = 1000;
     private readonly int mSecondScore = 500;
     private readonly int mThirdScore = 300;
-
-    public void PlayGame()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        return;
-    }
-
-    public void QuitGame()
-    {
-        Application.Quit();
-        return;
-    }
 
     public void GetHiScore()
     {
