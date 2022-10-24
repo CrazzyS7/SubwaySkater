@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private Rigidbody mPlayerRB;
-    private AudioManager mAudioManager;
     private readonly float mBounceForce = 6.0f;
+    private AudioManager mAudioManager;
+    private Rigidbody mPlayerRB;
 
     private void Start()
     {

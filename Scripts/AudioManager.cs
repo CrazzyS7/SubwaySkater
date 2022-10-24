@@ -4,21 +4,22 @@ using System;
 
 public class AudioManager : MonoBehaviour
 {
+    private readonly int mGameMusicIndex = 4;
+    private static AudioManager mInstance;
 
-    private static AudioManager instance;
-    public Sound[] sounds;
+    public Sound[] mSounds;
 
     void Start()
     {
-        if (instance != null)
+        if (mInstance != null)
             Destroy(gameObject);
         else
         {
-            instance = this;
+            mInstance = this;
             DontDestroyOnLoad(gameObject);
         }
 
-        foreach (Sound s in sounds)
+        foreach (Sound s in mSounds)
         {
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
@@ -29,14 +30,29 @@ public class AudioManager : MonoBehaviour
         return;
     }
 
-    public void Play(string sound)
+    private void Update()
+    {
+        //MuteMusic();
+        return;
+    }
+
+    public void Play(string _sound)
     {
         if (!ButtonsManager.IsMute)
         {
-            Sound s = Array.Find(sounds, item => item.name == sound);
+            Sound s = Array.Find(mSounds, item => item.name == _sound);
             s.source.Play();
         }
         return;
     }
 
+    public void MuteMusic(bool _mute)
+    {
+        if (_mute)
+            mSounds[mGameMusicIndex].source.Stop();
+        else
+            mSounds[mGameMusicIndex].source.Play();
+
+        return;
+    }
 }

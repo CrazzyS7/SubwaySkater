@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Ring : MonoBehaviour
 {
     private Transform mPlayerTrans;
+    private readonly int mScore = 3;
 
     // Start is called before the first frame update
     void Start()
@@ -19,8 +18,10 @@ public class Ring : MonoBehaviour
         if (mPlayerTrans.position.y < transform.position.y)
         {
             FindObjectOfType<AudioManager>().Play("whooshSFX");
+            ScoreManager.AddScore(mScore);
             GameManager.PassedRingNum++;
             Destroy(gameObject);
         }
+        return;
     }
 }

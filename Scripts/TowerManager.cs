@@ -1,4 +1,3 @@
-using UnityEditor;
 using UnityEngine;
 
 public class TowerManager : MonoBehaviour
@@ -13,7 +12,6 @@ public class TowerManager : MonoBehaviour
     private readonly int mMaxUnsafe = 6;
     private readonly int mMinHoles = 2;
     private readonly int mMaxHoles = 4;
-    //private int mNumOfRings = 7;
     private float mYSpawn = 0;
     private int mUnsafe = 0;
     private int mHoles = 0;

@@ -1,14 +1,13 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
-using Unity.Profiling;
-using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine;
+using System;
+using TMPro;
 
 public class ButtonsManager : MonoBehaviour
 {
     public TextMeshProUGUI mSoundMuteText;
+
+    private int mCharacterIndex = 0;
 
     public static bool IsMute
     { get; private set; }
@@ -16,6 +15,7 @@ public class ButtonsManager : MonoBehaviour
     private void Start()
     {
         IsMute = Convert.ToBoolean(PlayerPrefs.GetInt("mute", 0));
+        PlayerPrefs.SetInt("character", mCharacterIndex);
         return;
     }
 
@@ -49,6 +49,14 @@ public class ButtonsManager : MonoBehaviour
     public void ToggleMute()
     {
         IsMute = (IsMute) ? false : true;
+        FindObjectOfType<AudioManager>().MuteMusic(IsMute);
+        return;
+    }
+
+    public void CharacterSelector(int _newCharacter)
+    {
+        mCharacterIndex = _newCharacter;
+        PlayerPrefs.SetInt("character", mCharacterIndex);
         return;
     }
 }
